@@ -204,43 +204,8 @@ def match_query(image, query, points, descriptors, field, coarse=None):
     return distinct
 
 
-def residual_evidence(image, paths, evidence):
-    """Check clipped intensities and spatially coherent errors at cached image matches."""
-    yy, xx = np.mgrid[:32, :32].astype(np.float32)
-    interior = (xx-15.5)**2 + (yy-15.5)**2 < 14**2
-    plane = np.stack([np.ones_like(xx), xx-15.5, yy-15.5], axis=-1)
-    for path, matches in zip(paths, evidence):
-        query = cv2.imread(str(path), 0).astype(np.float32)
-        valid = interior & (query > 3) & (query < 252)
-        for match in matches:
-            warp = np.float32(match['warp'])
-            left, top = match['origin']
-            source = image[top:top+81, left:left+81].astype(np.float32)
-            mx = warp[0, 0]*(xx-4) + warp[0, 1]*(yy-4) + warp[0, 2]
-            my = warp[1, 0]*(xx-4) + warp[1, 1]*(yy-4) + warp[1, 2]
-            best = float('inf')
-            for blur in [0, .5, 1, 1.5]:
-                smooth = cv2.GaussianBlur(source, (0, 0), blur) if blur else source
-                aligned = cv2.remap(smooth, mx, my, cv2.INTER_LINEAR)
-                design = np.concatenate([aligned[..., None], plane], axis=-1)
-                coefficients = np.linalg.lstsq(design[valid], query[valid], rcond=None)[0]
-                if coefficients[0] < .1:
-                    continue
-                residual = query - np.clip(design @ coefficients, 0, 255)
-                mse = float(np.mean(residual[interior]**2))
-                if mse < best:
-                    best = mse
-                    coherent = cv2.GaussianBlur(residual, (0, 0), 1)
-                    features = [float(np.log1p(mse)),
-                                float(np.log1p(np.mean(coherent[interior]**2)))]
-            if not np.isfinite(best):
-                raise ValueError('Cached match has no valid photometric fit')
-            match['features'] = match['features'][:5] + features
-    return evidence
-
-
 def analyze_scene(folder, cache):
-    """Cache image matching; recompute residual verification on every read."""
+    """Content-addressed caches store computed evidence, never training answers."""
     folder, cache = Path(folder), Path(cache)
     paths = sorted((folder/'patches').glob('patch_*.png'))
     sky_paths = list(folder.glob('*_image.png'))
@@ -256,9 +221,9 @@ def analyze_scene(folder, cache):
     key = digest.hexdigest()
     cache.mkdir(parents=True, exist_ok=True)
     target = cache/f'{key}.json'
-    image = cv2.imread(str(sky_paths[0]), cv2.IMREAD_GRAYSCALE)
     if target.exists():
-        return residual_evidence(image, paths, json.loads(target.read_text()))
+        return json.loads(target.read_text())
+    image = cv2.imread(str(sky_paths[0]), cv2.IMREAD_GRAYSCALE)
     keys, descriptors = cv2.SIFT_create(contrastThreshold=.005, edgeThreshold=15).detectAndCompute(image, None)
     points = np.array([(*k.pt, k.size, k.angle) for k in keys])
     field = cv2.resize(whiten(image), None, fx=.5, fy=.5, interpolation=cv2.INTER_AREA)
@@ -275,7 +240,7 @@ def analyze_scene(folder, cache):
         print(f'{folder.name}: {len(results)}/{len(paths)} patches', flush=True)
     target.write_text(json.dumps(results, allow_nan=False))
     partial.unlink(missing_ok=True)
-    return residual_evidence(image, paths, results)
+    return results
 
 
 def fit_calibration(features, labels):
@@ -300,7 +265,7 @@ def fit_calibration(features, labels):
 def candidate_probabilities(matches, calibration):
     if not matches:
         return np.array([])
-    features = np.array([m['features'][:len(calibration['mean'])] for m in matches])
+    features = np.array([m['features'] for m in matches])
     design = np.column_stack([np.ones(len(matches)),
         (features-calibration['mean'])/calibration['std']])
     return 1/(1+np.exp(-np.clip(design@calibration['beta'], -30, 30)))
@@ -470,83 +435,6 @@ def verify_constellations(ranking, patterns, image):
     return sorted(ranking, key=lambda r: r['score'], reverse=True)
 
 
-def independent_transform(source, target):
-    """Fit geometry and check every correspondence with that point withheld."""
-    def fit(a, b, perspective):
-        if perspective:
-            return cv2.findHomography(a, b, 0)[0]
-        affine = np.linalg.lstsq(np.column_stack([a, np.ones(len(a))]), b, rcond=None)[0].T
-        return np.vstack([affine, [0, 0, 1]])
-
-    for perspective in [False, True]:
-        required = 6 if perspective else 5
-        if len(source) < required:
-            continue
-        if any(np.linalg.matrix_rank(np.column_stack([a, np.ones(len(a))])) < 3
-               for a in [source, target]):
-            continue
-        a, b = source, target
-        if perspective:
-            matrix, mask = cv2.findHomography(a, b, cv2.RANSAC, 6,
-                                             maxIters=2000, confidence=.995)
-            if matrix is None or mask.sum() < required:
-                continue
-            a, b = a[mask.ravel() > 0], b[mask.ravel() > 0]
-        else:
-            matrix = fit(a, b, False)
-        errors = []
-        for k in range(len(a)):
-            keep = np.arange(len(a)) != k
-            held_out = fit(a[keep], b[keep], perspective)
-            if held_out is None:
-                errors.append(float('inf'))
-            else:
-                estimated = cv2.perspectiveTransform(a[k:k+1][None], held_out)[0, 0]
-                errors.append(float(np.linalg.norm(estimated-b[k])))
-        if max(errors) <= 12:
-            return matrix, len(a), max(errors)
-    return None
-
-
-def recover_figure_queries(prediction, evidence, probabilities, nodes, points, owners, model):
-    """Recover rejected queries using geometry fitted without their own candidates."""
-    if model['support'] < 6:
-        return []
-    cv2.setRNGSeed(7)
-    source, target = np.array(model['node_indices']), np.array(model['point_indices'])
-    options = []
-    for i, (matches, probs) in enumerate(zip(evidence, probabilities)):
-        if prediction[i] != -1 or not len(probs):
-            continue
-        keep = owners[target] != i
-        result = independent_transform(nodes[source[keep]], points[target[keep]])
-        if result is None:
-            continue
-        matrix, support, error = result
-        denominator = np.column_stack([nodes, np.ones(len(nodes))]) @ matrix[2]
-        if (denominator.min()*denominator.max() <= 0
-                or np.max(np.abs(denominator))/np.min(np.abs(denominator)) > 3):
-            continue
-        projected = cv2.perspectiveTransform(nodes[None], matrix)[0]
-        for j, match in enumerate(matches):
-            distances = np.linalg.norm(projected-[match['x'], match['y']], axis=1)
-            node = int(distances.argmin())
-            if distances[node] <= 6 and probs[j] >= max(.01, .5*probs.max()):
-                score = float(np.log(probs[j]) - .5*(distances[node]/6)**2)
-                options.append((score, i, j, node, float(distances[node]), support, error))
-    used_queries, used_nodes, recovered = set(), set(), []
-    for _, i, j, node, distance, support, error in sorted(options, reverse=True):
-        if i in used_queries or node in used_nodes:
-            continue
-        used_queries.add(i)
-        used_nodes.add(node)
-        match = evidence[i][j]
-        prediction[i] = [round(match['x'], 2), round(match['y'], 2), 1]
-        recovered.append(dict(query=i+1, probability=float(probabilities[i][j]),
-                              distance=distance, independent_support=support, loo_max=error))
-    return recovered
-
-
 def predict_scene(evidence, calibration, patterns, image, threshold=.15):
     probabilities = [candidate_probabilities(matches, calibration) for matches in evidence]
     gray = image.astype(np.float32)
@@ -565,7 +453,6 @@ def predict_scene(evidence, calibration, patterns, image, threshold=.15):
                 weight = max(probs[j], .05*probs[j]/probs.max())
                 confidence.append(float(weight*np.clip(strength/70, 0, 1)**4))
                 alternatives.append(int(j))
-    geometry_points, geometry_owners = np.array(points), np.array(owners)
     ranking = identify_constellation(points, owners, confidence, patterns)
     ranking = verify_constellations(ranking, patterns, image)
     winner = ranking[0] if ranking else None
@@ -575,7 +462,7 @@ def predict_scene(evidence, calibration, patterns, image, threshold=.15):
         points, owners, alternatives = [], [], []
         for i, (matches, probs) in enumerate(zip(evidence, probabilities)):
             for j in np.argsort(probs)[::-1][:2]:
-                if probs[j] >= max(.04, .9*probs.max()):
+                if probs[j] >= max(.04, .6*probs.max()):
                     points.append([matches[j]['x'], matches[j]['y']])
                     owners.append(i)
                     alternatives.append(int(j))
@@ -585,7 +472,7 @@ def predict_scene(evidence, calibration, patterns, image, threshold=.15):
             np.array(owners), np.array(winner['matrix']), tolerance=48)
         for j in associated:
             owner, alternative = owners[j], alternatives[j]
-            if probabilities[owner][alternative] >= max(.04, .9*probabilities[owner].max()):
+            if probabilities[owner][alternative] >= max(.04, .6*probabilities[owner].max()):
                 chosen[owner] = alternative
     prediction = []
     for i, (matches, probs) in enumerate(zip(evidence, probabilities)):
@@ -596,11 +483,8 @@ def predict_scene(evidence, calibration, patterns, image, threshold=.15):
         present = probs[j] >= threshold or (i in chosen and probs[j] >= .04)
         match = matches[j]
         prediction.append([round(match['x'], 2), round(match['y'], 2), int(i in chosen)] if present else -1)
-    recovered = recover_figure_queries(prediction, evidence, probabilities,
-        patterns[winner['name']], geometry_points, geometry_owners, winner) if winner else []
-    return dict(patches=prediction, constellation=winner['name'] if chosen or recovered else 'unknown',
-                ranking=ranking, probabilities=[p.tolist() for p in probabilities],
-                geometric_rescues=recovered)
+    return dict(patches=prediction, constellation=winner['name'] if chosen else 'unknown',
+                ranking=ranking, probabilities=[p.tolist() for p in probabilities])
 
 
 def score_scene(row, prediction):

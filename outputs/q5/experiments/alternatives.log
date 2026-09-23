@@ -1,0 +1,5 @@
+scorpius 75 [('scorpius', np.float64(2.358), 11), ('hydrus', np.float64(1.362), 4), ('sculptor', np.float64(1.174), 3)] {'Presence': 1.0, 'Localization': 1.0, 'GeometricRecovery': 1.0, 'Identification': 1.0, 'Score': 1.0}
+pisces 93 [('pisces', np.float64(2.163), 9), ('lyra', np.float64(1.493), 3), ('auriga', np.float64(1.338), 3)] {'Presence': 0.9457671957671958, 'Localization': 0.9629629629629629, 'GeometricRecovery': 1.0, 'Identification': 1.0, 'Score': 0.9790343915343915}
+constellation_16 10 [('hydrus', np.float64(0.34), 3), ('indus', np.float64(0.284), 3), ('auriga', np.float64(0.234), 3)] 
+taurus 122 [('taurus', np.float64(1.843), 8), ('orion', np.float64(1.132), 12), ('auriga', np.float64(1.109), 4)] {'Presence': 0.9705627705627706, 'Localization': 0.8888888888888888, 'GeometricRecovery': 1.0, 'Identification': 1.0, 'Score': 0.9704184704184704}
+constellation_03 56 [('camelopardalis', np.float64(1.052), 4), ('indus', np.float64(0.95), 3), ('caelum', np.float64(0.761), 3)] 

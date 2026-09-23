@@ -1,0 +1,19 @@
+scorpius 76 [('scorpius', np.float64(2.432), 12), ('hydrus', np.float64(1.861), 4), ('sculptor', np.float64(1.385), 3)] {'Presence': 0.9457671957671958, 'Localization': 1.0, 'GeometricRecovery': 1.0, 'Identification': 1.0, 'Score': 0.986441798941799}
+constellation_01 7 [('ophiuchus', np.float64(1.132), 5), ('columba', np.float64(0.653), 4), ('centaurus', np.float64(0.509), 4)] 
+constellation_02 7 [('corona-australis', np.float64(2.074), 6), ('equuleus', np.float64(0.843), 3), ('camelopardalis', np.float64(0.758), 3)] 
+pisces 111 [('pisces', np.float64(2.182), 9), ('reticulum', np.float64(1.866), 4), ('lyra', np.float64(1.49), 3)] {'Presence': 0.9171717171717171, 'Localization': 0.9629629629629629, 'GeometricRecovery': 1.0, 'Identification': 1.0, 'Score': 0.9718855218855218}
+constellation_04 9 [('canis-major', np.float64(4.857), 11), ('musca', np.float64(1.853), 3), ('aries', np.float64(1.492), 3)] 
+constellation_05 23 [('carina', np.float64(0.971), 9), ('chamaeleon', np.float64(0.568), 3), ('sculptor', np.float64(0.559), 3)] 
+constellation_06 20 [('centaurus', np.float64(1.362), 11), ('corona-borealis', np.float64(0.734), 4), ('aries', np.float64(0.619), 3)] 
+constellation_03 74 [('crux', np.float64(1.306), 4), ('camelopardalis', np.float64(1.022), 4), ('indus', np.float64(0.995), 3)] 
+taurus 165 [('hydrus', np.float64(2.14), 5), ('taurus', np.float64(1.746), 8), ('crux', np.float64(1.245), 4)] {'Presence': 0.8819444444444444, 'Localization': 0.8888888888888888, 'GeometricRecovery': 0.8333333333333334, 'Identification': 0.0, 'Score': 0.6065972222222222}
+constellation_07 7 [('perseus', np.float64(5.486), 7), ('chamaeleon', np.float64(2.205), 3), ('crux', np.float64(1.681), 3)] 
+constellation_08 13 [('orion', np.float64(3.086), 9), ('caelum', np.float64(2.403), 3), ('musca', np.float64(2.127), 3)] 
+constellation_12 26 [('lupus', np.float64(1.358), 7), ('crux', np.float64(0.954), 3), ('hydrus', np.float64(0.773), 3)] 
+constellation_13 52 [('aquila', np.float64(1.577), 6), ('camelopardalis', np.float64(0.851), 3), ('aries', np.float64(0.789), 3)] 
+constellation_11 151 [('canis-major', np.float64(2.428), 12), ('hydrus', np.float64(0.93), 4), ('ophiuchus', np.float64(0.903), 4)] 
+constellation_15 17 [('sagittarius', np.float64(1.641), 13), ('cepheus', np.float64(1.314), 4), ('camelopardalis', np.float64(1.228), 4)] 
+constellation_14 93 [('cepheus', np.float64(0.952), 4), ('norma', np.float64(0.946), 4), ('cancer', np.float64(0.704), 4)] 
+constellation_16 13 [('norma', np.float64(0.332), 3), ('hydrus', np.float64(0.318), 3), ('indus', np.float64(0.293), 3)] 
+constellation_10 208 [('centaurus', np.float64(3.135), 13), ('aries', np.float64(1.923), 4), ('lyra', np.float64(1.865), 4)] 
+constellation_17 59 [('ursa-minor', np.float64(3.093), 7), ('musca', np.float64(1.752), 4), ('caelum', np.float64(1.567), 3)] 

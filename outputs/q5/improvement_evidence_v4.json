@@ -1,0 +1,150 @@
+{
+  "public_scores": {
+    "v2": 0.90637,
+    "v3": 0.90392,
+    "v4": null
+  },
+  "development_score": 0.986854657687991,
+  "development_metrics": {
+    "pisces": {
+      "Presence": 0.9457671957671958,
+      "Localization": 0.9629629629629629,
+      "GeometricRecovery": 1.0,
+      "Identification": 1.0,
+      "Score": 0.9790343915343915
+    },
+    "scorpius": {
+      "Presence": 1.0,
+      "Localization": 1.0,
+      "GeometricRecovery": 1.0,
+      "Identification": 1.0,
+      "Score": 1.0
+    },
+    "taurus": {
+      "Presence": 0.9705627705627706,
+      "Localization": 0.9444444444444444,
+      "GeometricRecovery": 1.0,
+      "Identification": 1.0,
+      "Score": 0.9815295815295815
+    }
+  },
+  "new_detections": [
+    {
+      "scene": "constellation_10",
+      "query": "patch_25",
+      "prediction": "(2045.39, 2469.26, 1)"
+    },
+    {
+      "scene": "constellation_10",
+      "query": "patch_44",
+      "prediction": "(677.93, 1482.05, 1)"
+    },
+    {
+      "scene": "constellation_10",
+      "query": "patch_49",
+      "prediction": "(634.47, 609.82, 1)"
+    },
+    {
+      "scene": "constellation_10",
+      "query": "patch_50",
+      "prediction": "(1004.27, 1656.22, 1)"
+    },
+    {
+      "scene": "constellation_11",
+      "query": "patch_25",
+      "prediction": "(1211.84, 1693.19, 1)"
+    },
+    {
+      "scene": "constellation_11",
+      "query": "patch_43",
+      "prediction": "(1005.74, 1795.15, 1)"
+    },
+    {
+      "scene": "constellation_17",
+      "query": "patch_06",
+      "prediction": "(1912.18, 826.76, 1)"
+    },
+    {
+      "scene": "constellation_17",
+      "query": "patch_29",
+      "prediction": "(2244.95, 1168.14, 1)"
+    }
+  ],
+  "recovery_evidence": {
+    "constellation_10": [
+      {
+        "query": 44,
+        "probability": 0.05295027536795292,
+        "distance": 1.8881920860776769,
+        "independent_support": 11,
+        "loo_max": 5.545177639268195
+      },
+      {
+        "query": 50,
+        "probability": 0.023130060318735664,
+        "distance": 1.4408333140438232,
+        "independent_support": 12,
+        "loo_max": 4.319487643965234
+      },
+      {
+        "query": 49,
+        "probability": 0.02815226495969771,
+        "distance": 4.319487643965234,
+        "independent_support": 11,
+        "loo_max": 4.059518205888024
+      },
+      {
+        "query": 25,
+        "probability": 0.01816501402470344,
+        "distance": 3.6343025351924596,
+        "independent_support": 11,
+        "loo_max": 3.863804126276739
+      }
+    ],
+    "constellation_11": [
+      {
+        "query": 25,
+        "probability": 0.04528448818422919,
+        "distance": 3.8213954293613703,
+        "independent_support": 10,
+        "loo_max": 7.935813416791302
+      },
+      {
+        "query": 43,
+        "probability": 0.010159841165476996,
+        "distance": 1.3578965227536586,
+        "independent_support": 10,
+        "loo_max": 7.935813416791302
+      }
+    ],
+    "constellation_17": [
+      {
+        "query": 6,
+        "probability": 0.0851137129928787,
+        "distance": 0.7243593927990077,
+        "independent_support": 6,
+        "loo_max": 3.6029846516146184
+      },
+      {
+        "query": 29,
+        "probability": 0.039581518932088895,
+        "distance": 0.5803861964028647,
+        "independent_support": 6,
+        "loo_max": 3.70262069412619
+      }
+    ]
+  },
+  "checks": {
+    "fresh_kernel_notebook": true,
+    "csv_rows": 16,
+    "csv_columns": 90,
+    "real_queries": 668,
+    "accepted_v3_predictions_unchanged": true,
+    "cli_without_training_folder_exact_match": true,
+    "original_input_hashes_checked_in_notebook": true,
+    "synthetic_projective_max_error_pixels": 0.244,
+    "insufficient_collinear_collapsed_geometry_rejected": true
+  },
+  "limits": "The same three scenes informed development. Additional competition detections are predictions, not verified labels; 95\u201397% public performance is not established.",
+  "sha256": "0af5722d75b056b82b79f32c3374c9641148a3cfa38e1ea6ba19040bf7cd5e53"
+}

@@ -1,0 +1,25 @@
+pisces [('pisces', np.float64(6.933), 11, 5.613008276923999), ('norma', np.float64(0.652), 3, None)] {'Presence': 0.9457671957671958, 'Localization': 0.9629629629629629, 'GeometricRecovery': 1.0, 'Identification': 1.0, 'Score': 0.9790343915343915}
+scorpius [('scorpius', np.float64(3.888), 10, 4.751554991502629), ('lupus', np.float64(2.272), 4, None)] {'Presence': 1.0, 'Localization': 1.0, 'GeometricRecovery': 1.0, 'Identification': 1.0, 'Score': 1.0}
+taurus [('taurus', np.float64(4.288), 8, None), ('equuleus', np.float64(1.261), 3, None)] {'Presence': 0.9705627705627706, 'Localization': 0.9444444444444444, 'GeometricRecovery': 1.0, 'Identification': 1.0, 'Score': 0.9815295815295815}
+constellation_01 [('ophiuchus', np.float64(1.518), 5, None), ('lyra', np.float64(0.305), 3, None)] 
+constellation_02 [('corona-australis', np.float64(2.425), 6, 5.540306112925474), ('crater', np.float64(0.616), 3, None)] 
+constellation_03 [('camelopardalis', np.float64(2.383), 4, None), ('lupus', np.float64(0.571), 4, None)] 
+constellation_04 [('canis-major', np.float64(6.243), 10, None), ('sagitta', np.float64(0.607), 3, None)] 
+constellation_05 [('carina', np.float64(1.181), 9, None), ('chamaeleon', np.float64(0.424), 3, None)] 
+constellation_06 [('centaurus', np.float64(1.93), 11, None), ('ophiuchus', np.float64(0.437), 3, None)] 
+constellation_07 [('perseus', np.float64(4.771), 7, None), ('chamaeleon', np.float64(0.523), 3, None)] 
+constellation_08 [('orion', np.float64(5.299), 9, None), ('tucana', np.float64(0.489), 3, None)] 
+constellation_10 [('centaurus', np.float64(5.091), 13, None), ('corona-australis', np.float64(0.629), 5, None)] 
+constellation_11 [('canis-major', np.float64(4.182), 12, None), ('musca', np.float64(1.456), 3, None)] 
+constellation_12 [('lupus', np.float64(3.437), 9, 4.413520221523896), ('sagittarius', np.float64(0.423), 5, None)] 
+constellation_13 [('aquila', np.float64(3.181), 6, None), ('aries', np.float64(0.545), 3, None)] 
+constellation_14 [('corona-borealis', np.float64(2.177), 5, None), ('equuleus', np.float64(0.727), 3, None)] 
+constellation_15 [('sagittarius', np.float64(1.769), 13, 5.99551298505447), ('scutum', np.float64(0.599), 3, None)] 
+constellation_16 [('camelopardalis', np.float64(0.251), 3, None), ('indus', np.float64(0.227), 3, None)] 
+constellation_17 [('cepheus', np.float64(1.482), 3, None), ('musca', np.float64(1.003), 3, None)] 
+ 
+Traceback (most recent call last):
+  File "/tmp/q5_verify.py", line 20, in <module>
+    source=open('/tmp/q5_projective.py').read().split("if __name__=='__main__':")[1]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^~
+IndexError: list index out of range

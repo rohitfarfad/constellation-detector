@@ -1,0 +1,81 @@
+{
+  "baseline_local_mean": 0.9712910630921384,
+  "revised_local_mean": 0.986854657687991,
+  "baseline_metrics": {
+    "pisces": {
+      "Presence": 0.9171717171717171,
+      "Localization": 0.9629629629629629,
+      "GeometricRecovery": 1.0,
+      "Identification": 1.0,
+      "Score": 0.9718855218855218
+    },
+    "scorpius": {
+      "Presence": 0.9457671957671958,
+      "Localization": 1.0,
+      "GeometricRecovery": 1.0,
+      "Identification": 1.0,
+      "Score": 0.986441798941799
+    },
+    "taurus": {
+      "Presence": 0.9110723626852659,
+      "Localization": 0.8888888888888888,
+      "GeometricRecovery": 1.0,
+      "Identification": 1.0,
+      "Score": 0.9555458684490943
+    }
+  },
+  "revised_metrics": {
+    "pisces": {
+      "Presence": 0.9457671957671958,
+      "Localization": 0.9629629629629629,
+      "GeometricRecovery": 1.0,
+      "Identification": 1.0,
+      "Score": 0.9790343915343915
+    },
+    "scorpius": {
+      "Presence": 1.0,
+      "Localization": 1.0,
+      "GeometricRecovery": 1.0,
+      "Identification": 1.0,
+      "Score": 1.0
+    },
+    "taurus": {
+      "Presence": 0.9705627705627706,
+      "Localization": 0.9444444444444444,
+      "GeometricRecovery": 1.0,
+      "Identification": 1.0,
+      "Score": 0.9815295815295815
+    }
+  },
+  "changes": [
+    "Two photometric verification features: clipped intensity error and spatially smoothed residual error.",
+    "Require alternatives to retain at least 90% of best image-match probability for geometric override (previously 60%)."
+  ],
+  "experiments_rejected": [
+    "Four-point affine refitting misidentified held-out Taurus.",
+    "Top-50 sky-blob geometry missed many known figure stars and misidentified the three training scenes."
+  ],
+  "limits": "Development leave-one-scene-out calibration, not untouched generalization. All three scenes influenced method selection. Official scorer and new public/private scores remain unverified.",
+  "validation": {
+    "notebook_fresh_kernel": true,
+    "cli_without_training_folder_exact_row_match": true,
+    "rows": 16,
+    "columns": 90,
+    "real_queries": 668,
+    "changed_patch_cells": 35,
+    "changed_names": [
+      [
+        "constellation_03",
+        "crux",
+        "camelopardalis"
+      ],
+      [
+        "constellation_16",
+        "norma",
+        "hydrus"
+      ]
+    ],
+    "sha256": "8901b579837b913095ec760721b18fdecd90377fa9192d59a5f1d8a548b2e58e",
+    "membership_among_correct_localizations": "67/69; two Pisces figure points still labeled off-figure; official m scoring remains unresolved"
+  }
+}

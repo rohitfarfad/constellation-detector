@@ -33,3 +33,23 @@ I submitted the prediction and getting score of only 84 percent, improve the mod
 The attached screenshot reports `submission_candidate.csv` public score **0.84295**.
 
 </details>
+
+<details><summary>User request 12</summary>
+
+Go through the work already done for the kaggel compition, currently the kaggle score on public leader board is 90 percent against targeted 95 to 97 percent, go through the user queries in the python notebooks and AGENTS.md file to understand the context and requrirements, do the improvements to achieve the targeted performance, keep the code changes to minimum and optimize the token usage.
+
+</details>
+
+<details><summary>User request 13</summary>
+
+This did not improve the score but remained comparable to the previous submission, look for other improvements to raise the score, dont fallback to the previous methods already tried, describe the current method used in brief and make improvemet conserving the token usage
+
+The attached screenshot reports public scores: v3 **0.90392**, v2 **0.90637**, original candidate **0.84295**.
+
+</details>
+
+<details><summary>User request 14</summary>
+
+Continue the work
+
+</details>
