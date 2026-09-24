@@ -1,0 +1,103 @@
+{
+  "branch": "refinement/q5-v6",
+  "v5_public_score": 0.92331,
+  "v6_public_score": 0.92331,
+  "v7_public_score": null,
+  "target": 0.95,
+  "change": "Four net lines: allow probability >=0.001 only with >=8 independent supports, withheld-point error <=6, candidate-to-node distance <=2, and no accepted point within 12 pixels of that node. Retain half-of-best probability and all existing checks.",
+  "rejected": [
+    "Weak 3/4-point similarity refit: no changes on three training scenes or two weak competition winners.",
+    "Additional high-confidence figure anchors: no additional recoveries.",
+    "Unconditional lower recovery floor: unsupported because weak absent queries can match claimed stars."
+  ],
+  "diagnostics": {
+    "oracle": "Ground-truth-seeded training diagnostic only: Pisces 22 best confidence 0.03460, Taurus 18 no valid ECC fit. These seeds are never used in production or caches.",
+    "reference_visual_audit": "outputs/q5/experiments/v7_reference_audit.png",
+    "recovery_visual_audit": "outputs/q5/experiments/v7_recovery_inspection.png"
+  },
+  "noise_check": {
+    "seed": 117,
+    "noise_sigmas": [
+      5,
+      15,
+      25
+    ],
+    "valid_query_variants": 348,
+    "low_confidence_variants_checked": 192,
+    "absent_variants_checked": 124,
+    "new_decisions": [
+      {
+        "scene": "scorpius",
+        "query": 8,
+        "sigma": 25,
+        "truth": [
+          395,
+          758,
+          1
+        ],
+        "before": -1,
+        "after": [
+          394.69,
+          759.02,
+          1
+        ],
+        "correct": true
+      }
+    ]
+  },
+  "development_metrics": {
+    "pisces": {
+      "Presence": 0.9457671957671958,
+      "Localization": 0.9629629629629629,
+      "GeometricRecovery": 1.0,
+      "Identification": 1.0,
+      "Score": 0.9790343915343915
+    },
+    "scorpius": {
+      "Presence": 1.0,
+      "Localization": 1.0,
+      "GeometricRecovery": 1.0,
+      "Identification": 1.0,
+      "Score": 1.0
+    },
+    "taurus": {
+      "Presence": 0.9705627705627706,
+      "Localization": 0.9444444444444444,
+      "GeometricRecovery": 1.0,
+      "Identification": 1.0,
+      "Score": 0.9815295815295815
+    }
+  },
+  "mean_development_score": 0.986854657687991,
+  "changes": [
+    {
+      "scene": "constellation_12",
+      "query": 15,
+      "before": -1,
+      "after": [
+        1525.33,
+        1289.69,
+        1
+      ],
+      "evidence": {
+        "query": 15,
+        "probability": 0.0033934928131835185,
+        "distance": 1.7430953639203572,
+        "independent_support": 8,
+        "loo_max": 4.320769116791291
+      }
+    }
+  ],
+  "validation": {
+    "fresh_kernel_notebook": true,
+    "notebook_seconds": 344.2025298750086,
+    "cli_without_training_matches_notebook": true,
+    "calibration_unchanged": true,
+    "all_v6_accepted_predictions_and_identities_preserved": true,
+    "original_input_hashes_verified": 881,
+    "rows": 16,
+    "columns": 90,
+    "real_queries": 668
+  },
+  "limitations": "The additional competition prediction is unlabeled. Noise variants are correlated training examples, not independent validation. Public/private improvement and the 95% target are not established. No Kaggle submission performed."
+}

@@ -1,0 +1,30 @@
+{
+  "seed": 117,
+  "noise_sigmas": [
+    5,
+    15,
+    25
+  ],
+  "valid_query_variants": 348,
+  "low_confidence_variants_checked": 192,
+  "absent_variants_checked": 124,
+  "new_decisions": [
+    {
+      "scene": "scorpius",
+      "query": 8,
+      "sigma": 25,
+      "truth": [
+        395,
+        758,
+        1
+      ],
+      "before": -1,
+      "after": [
+        394.69,
+        759.02,
+        1
+      ],
+      "correct": true
+    }
+  ]
+}

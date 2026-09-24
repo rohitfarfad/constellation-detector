@@ -77,3 +77,11 @@ The score improve to 92.3 percent, but still bit behind from target 95 percent, 
 Attached lecture slide suggests weighted template matching (0.4 × Raw NCC + 0.6 × Bandpass NCC), constellation geometry to resolve localization ambiguity, and visual inspection. Its displayed private leaderboard does not identify the user's team; the approximately 92.3% v5 score is user-reported, not inferred from the slide. OpenAI Codex assisted with the experiments, refinement, and validation.
 
 </details>
+
+<details><summary>User request 20</summary>
+
+The kaggle score did not improve the it remais exactly the same, check and improve in the same branch
+
+Attached screenshot confirms **submission_v6.csv = 0.92331** and **submission_v5.csv = 0.92331**, both public scores. OpenAI Codex assisted with the audit, experiments, small recovery change, and validation.
+
+</details>

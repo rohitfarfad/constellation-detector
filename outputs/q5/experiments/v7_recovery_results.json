@@ -1,0 +1,96 @@
+{
+  "pisces": {
+    "changes": [],
+    "recoveries": []
+  },
+  "scorpius": {
+    "changes": [],
+    "recoveries": []
+  },
+  "taurus": {
+    "changes": [],
+    "recoveries": []
+  },
+  "constellation_01": {
+    "changes": [],
+    "recoveries": []
+  },
+  "constellation_02": {
+    "changes": [],
+    "recoveries": []
+  },
+  "constellation_03": {
+    "changes": [],
+    "recoveries": []
+  },
+  "constellation_04": {
+    "changes": [],
+    "recoveries": []
+  },
+  "constellation_05": {
+    "changes": [],
+    "recoveries": []
+  },
+  "constellation_06": {
+    "changes": [],
+    "recoveries": []
+  },
+  "constellation_07": {
+    "changes": [],
+    "recoveries": []
+  },
+  "constellation_08": {
+    "changes": [],
+    "recoveries": []
+  },
+  "constellation_10": {
+    "changes": [],
+    "recoveries": []
+  },
+  "constellation_11": {
+    "changes": [],
+    "recoveries": []
+  },
+  "constellation_12": {
+    "changes": [
+      {
+        "query": 15,
+        "before": -1,
+        "after": [
+          1525.33,
+          1289.69,
+          1
+        ]
+      }
+    ],
+    "recoveries": [
+      {
+        "query": 15,
+        "probability": 0.0033934928131835185,
+        "distance": 1.7430953639203572,
+        "independent_support": 8,
+        "loo_max": 4.320769116791291
+      }
+    ]
+  },
+  "constellation_13": {
+    "changes": [],
+    "recoveries": []
+  },
+  "constellation_14": {
+    "changes": [],
+    "recoveries": []
+  },
+  "constellation_15": {
+    "changes": [],
+    "recoveries": []
+  },
+  "constellation_16": {
+    "changes": [],
+    "recoveries": []
+  },
+  "constellation_17": {
+    "changes": [],
+    "recoveries": []
+  }
+}

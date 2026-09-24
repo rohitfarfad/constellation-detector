@@ -535,11 +535,7 @@ def recover_figure_queries(prediction, evidence, probabilities, nodes, points, o
         for j, match in enumerate(matches):
             distances = np.linalg.norm(projected-[match['x'], match['y']], axis=1)
             node = int(distances.argmin())
-            unclaimed = all(p == -1 or np.linalg.norm(projected[node]-p[:2]) > 12
-                            for p in prediction)
-            precise = support >= 8 and error <= 6 and distances[node] <= 2 and unclaimed
-            floor = .001 if precise else .01
-            if distances[node] <= 6 and probs[j] >= max(floor, .5*probs.max()):
+            if distances[node] <= 6 and probs[j] >= max(.01, .5*probs.max()):
                 score = float(np.log(probs[j]) - .5*(distances[node]/6)**2)
                 options.append((score, i, j, node, float(distances[node]), support, error))
     used_queries, used_nodes, recovered = set(), set(), []

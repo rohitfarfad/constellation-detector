@@ -1,0 +1,167 @@
+{
+  "branch": "refinement/q5-v6",
+  "baseline_user_reported_percent": 92.3,
+  "public_target_percent": 95,
+  "v6_kaggle_score": null,
+  "change": "Joint reciprocal reassignment using 0.4 raw NCC + 0.6 bandpass NCC; each improves by >=0.02, passes existing-style confidence gates, and lands within six pixels of two distinct nodes predicted from at least six other correspondences, excluding both queries.",
+  "development_metrics": {
+    "pisces": {
+      "Presence": 0.9457671957671958,
+      "Localization": 0.9629629629629629,
+      "GeometricRecovery": 1.0,
+      "Identification": 1.0,
+      "Score": 0.9790343915343915
+    },
+    "scorpius": {
+      "Presence": 1.0,
+      "Localization": 1.0,
+      "GeometricRecovery": 1.0,
+      "Identification": 1.0,
+      "Score": 1.0
+    },
+    "taurus": {
+      "Presence": 0.9705627705627706,
+      "Localization": 0.9444444444444444,
+      "GeometricRecovery": 1.0,
+      "Identification": 1.0,
+      "Score": 0.9815295815295815
+    }
+  },
+  "mean_development_score": 0.986854657687991,
+  "rejected_experiments": [
+    "Weighted scoring alone among probability-qualified candidates: four correct training locations displaced; one already-false detection moved. Not promoted.",
+    "Independent geometry without reciprocity: plausible wrong alternatives remain on training scenes. Not promoted.",
+    "Annular weighted NCC calibration feature: preliminary image-only screening removed the Pisces false positive but introduced Scorpius query 34 as a false positive and reduced above-threshold true-candidate coverage in two scenes. No full pipeline promotion."
+  ],
+  "stress_check": {
+    "pisces": {
+      "baseline_unchanged": true,
+      "constructed_reciprocal_errors": 0,
+      "corrected_pairs": 0,
+      "unwanted_changes": 0,
+      "details": []
+    },
+    "scorpius": {
+      "baseline_unchanged": true,
+      "constructed_reciprocal_errors": 7,
+      "corrected_pairs": 5,
+      "unwanted_changes": 0,
+      "details": [
+        {
+          "queries": [
+            8,
+            20
+          ],
+          "corrected": true,
+          "other_changes": []
+        },
+        {
+          "queries": [
+            8,
+            41
+          ],
+          "corrected": true,
+          "other_changes": []
+        },
+        {
+          "queries": [
+            17,
+            36
+          ],
+          "corrected": true,
+          "other_changes": []
+        },
+        {
+          "queries": [
+            19,
+            41
+          ],
+          "corrected": true,
+          "other_changes": []
+        },
+        {
+          "queries": [
+            20,
+            36
+          ],
+          "corrected": true,
+          "other_changes": []
+        }
+      ]
+    },
+    "taurus": {
+      "baseline_unchanged": true,
+      "constructed_reciprocal_errors": 0,
+      "corrected_pairs": 0,
+      "unwanted_changes": 0,
+      "details": []
+    }
+  },
+  "visual_review": {
+    "training": "outputs/q5/experiments/v6_training_audit.png",
+    "proposed_pair": "outputs/q5/experiments/v6_pair_inspection.png",
+    "finding": "Saturated star images remain visually ambiguous. No obvious invalid warp; visual inspection is not ground truth."
+  },
+  "changes": [
+    {
+      "scene": "constellation_11",
+      "query": 12,
+      "before": [
+        2118.47,
+        1823.73,
+        1
+      ],
+      "after": [
+        1008.3,
+        2070.5,
+        1
+      ]
+    },
+    {
+      "scene": "constellation_11",
+      "query": 47,
+      "before": [
+        1016.66,
+        2072.02,
+        1
+      ],
+      "after": [
+        2119.89,
+        1822.86,
+        1
+      ]
+    }
+  ],
+  "swaps": {
+    "constellation_11": [
+      {
+        "queries": [
+          12,
+          47
+        ],
+        "weighted_gains": [
+          0.024463039636611894,
+          0.039675915241241366
+        ],
+        "distances": [
+          0.3008982153788405,
+          3.3387876880605276
+        ],
+        "independent_support": 10,
+        "loo_max": 7.35589707322553
+      }
+    ]
+  },
+  "validation": {
+    "fresh_kernel_notebook": true,
+    "csv_rows": 16,
+    "csv_columns": 90,
+    "real_queries": 668,
+    "cli_without_training_matches_notebook": true,
+    "calibration_unchanged": true,
+    "original_input_hashes_verified": 881,
+    "presence_decisions_membership_and_names_unchanged": true,
+    "notebook_seconds": 365.52472804201534
+  },
+  "limitations": "The single changed competition pair is unlabeled. Public/private improvement and the 95% target remain unverified. Seven constructed errors all came from Scorpius; this is a stress check, not independent generalization evidence. No Kaggle upload performed."
+}

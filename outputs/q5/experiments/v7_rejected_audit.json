@@ -1,0 +1,412 @@
+{
+  "pisces": [
+    {
+      "query": 5,
+      "candidate": 1,
+      "probability": 0.01480872288183614,
+      "ratio": 0.6919399571290491,
+      "distance": 8.631634012830943,
+      "support": 8,
+      "loo_max": 6.721073285882677,
+      "truth": -1,
+      "node": 6,
+      "occupied": false
+    },
+    {
+      "query": 5,
+      "candidate": 10,
+      "probability": 0.002584504748002826,
+      "ratio": 0.12076139980486719,
+      "distance": 4.787746846732384,
+      "support": 8,
+      "loo_max": 6.721073285882677,
+      "truth": -1,
+      "node": 11,
+      "occupied": true
+    },
+    {
+      "query": 30,
+      "candidate": 6,
+      "probability": 0.004889469389500379,
+      "ratio": 0.12964436452760486,
+      "distance": 1.6962196423181755,
+      "support": 8,
+      "loo_max": 5.446615159512513,
+      "truth": -1,
+      "node": 1,
+      "occupied": true
+    },
+    {
+      "query": 40,
+      "candidate": 1,
+      "probability": 0.003016081582769235,
+      "ratio": 1.0,
+      "distance": 2.700010204883101,
+      "support": 8,
+      "loo_max": 5.446615159512513,
+      "truth": -1,
+      "node": 1,
+      "occupied": true
+    }
+  ],
+  "scorpius": [],
+  "taurus": [],
+  "constellation_01": [],
+  "constellation_02": [],
+  "constellation_03": [],
+  "constellation_04": [],
+  "constellation_05": [],
+  "constellation_06": [],
+  "constellation_07": [],
+  "constellation_08": [
+    {
+      "query": 22,
+      "candidate": 1,
+      "probability": 0.0017988465391626837,
+      "ratio": 0.21050433458556267,
+      "distance": 3.666417744471529,
+      "support": 8,
+      "loo_max": 11.853287946552273,
+      "truth": null,
+      "node": 11,
+      "occupied": true
+    },
+    {
+      "query": 22,
+      "candidate": 2,
+      "probability": 0.0018927817332874098,
+      "ratio": 0.22149680398353327,
+      "distance": 4.368172599645255,
+      "support": 8,
+      "loo_max": 11.853287946552273,
+      "truth": null,
+      "node": 16,
+      "occupied": false
+    },
+    {
+      "query": 22,
+      "candidate": 4,
+      "probability": 0.0008653622957524503,
+      "ratio": 0.1012662894121009,
+      "distance": 10.391472264977162,
+      "support": 8,
+      "loo_max": 11.853287946552273,
+      "truth": null,
+      "node": 18,
+      "occupied": false
+    }
+  ],
+  "constellation_10": [
+    {
+      "query": 10,
+      "candidate": 9,
+      "probability": 0.0001851403426776131,
+      "ratio": 0.06917883124993365,
+      "distance": 0.38405129316133774,
+      "support": 12,
+      "loo_max": 4.319487643965234,
+      "truth": null,
+      "node": 2,
+      "occupied": true
+    },
+    {
+      "query": 46,
+      "candidate": 2,
+      "probability": 0.007438695197322257,
+      "ratio": 0.0694579317522527,
+      "distance": 3.7999191442930207,
+      "support": 12,
+      "loo_max": 4.319487643965234,
+      "truth": null,
+      "node": 9,
+      "occupied": true
+    },
+    {
+      "query": 46,
+      "candidate": 3,
+      "probability": 0.0029817364743979814,
+      "ratio": 0.027841609724308942,
+      "distance": 0.08596380477360696,
+      "support": 12,
+      "loo_max": 4.319487643965234,
+      "truth": null,
+      "node": 2,
+      "occupied": true
+    },
+    {
+      "query": 46,
+      "candidate": 8,
+      "probability": 0.0020407440289223456,
+      "ratio": 0.019055204672955336,
+      "distance": 1.0908874336687617,
+      "support": 12,
+      "loo_max": 4.319487643965234,
+      "truth": null,
+      "node": 1,
+      "occupied": true
+    },
+    {
+      "query": 46,
+      "candidate": 10,
+      "probability": 0.0033335539852372706,
+      "ratio": 0.031126663891593458,
+      "distance": 2.2141263143273817,
+      "support": 12,
+      "loo_max": 4.319487643965234,
+      "truth": null,
+      "node": 5,
+      "occupied": true
+    },
+    {
+      "query": 47,
+      "candidate": 11,
+      "probability": 0.0013663178238314125,
+      "ratio": 0.11792766924591423,
+      "distance": 1.29467163493087,
+      "support": 12,
+      "loo_max": 4.319487643965234,
+      "truth": null,
+      "node": 5,
+      "occupied": true
+    },
+    {
+      "query": 52,
+      "candidate": 2,
+      "probability": 0.00018994118069509667,
+      "ratio": 0.075503047503711,
+      "distance": 9.082375414191729,
+      "support": 12,
+      "loo_max": 4.319487643965234,
+      "truth": null,
+      "node": 2,
+      "occupied": true
+    },
+    {
+      "query": 52,
+      "candidate": 5,
+      "probability": 0.0001517958462679667,
+      "ratio": 0.060339990252214794,
+      "distance": 5.786408733791121,
+      "support": 12,
+      "loo_max": 4.319487643965234,
+      "truth": null,
+      "node": 12,
+      "occupied": false
+    },
+    {
+      "query": 54,
+      "candidate": 7,
+      "probability": 0.003991228378311351,
+      "ratio": 0.3510333088115487,
+      "distance": 10.3165596926726,
+      "support": 12,
+      "loo_max": 4.319487643965234,
+      "truth": null,
+      "node": 15,
+      "occupied": false
+    }
+  ],
+  "constellation_11": [
+    {
+      "query": 31,
+      "candidate": 3,
+      "probability": 0.002035145701891464,
+      "ratio": 0.45044674086651376,
+      "distance": 2.295365476825981,
+      "support": 10,
+      "loo_max": 6.179550526020206,
+      "truth": null,
+      "node": 3,
+      "occupied": true
+    },
+    {
+      "query": 36,
+      "candidate": 6,
+      "probability": 0.006743234247463861,
+      "ratio": 0.5853789514424039,
+      "distance": 7.085429432909626,
+      "support": 10,
+      "loo_max": 6.179550526020206,
+      "truth": null,
+      "node": 1,
+      "occupied": false
+    },
+    {
+      "query": 45,
+      "candidate": 6,
+      "probability": 0.0008223228583601575,
+      "ratio": 0.541132260021395,
+      "distance": 3.9264025097174526,
+      "support": 10,
+      "loo_max": 6.179550526020206,
+      "truth": null,
+      "node": 9,
+      "occupied": true
+    }
+  ],
+  "constellation_12": [
+    {
+      "query": 1,
+      "candidate": 10,
+      "probability": 0.00013533962036610403,
+      "ratio": 0.20594320811534444,
+      "distance": 2.355190158932193,
+      "support": 9,
+      "loo_max": 4.224513728803629,
+      "truth": null,
+      "node": 0,
+      "occupied": true
+    },
+    {
+      "query": 15,
+      "candidate": 0,
+      "probability": 0.0033934928131835185,
+      "ratio": 0.8208602018656002,
+      "distance": 1.7430953639203572,
+      "support": 8,
+      "loo_max": 4.320769116791291,
+      "truth": null,
+      "node": 6,
+      "occupied": false
+    },
+    {
+      "query": 15,
+      "candidate": 6,
+      "probability": 0.0041340691209916115,
+      "ratio": 1.0,
+      "distance": 5.383115960079143,
+      "support": 8,
+      "loo_max": 4.320769116791291,
+      "truth": null,
+      "node": 9,
+      "occupied": true
+    },
+    {
+      "query": 15,
+      "candidate": 8,
+      "probability": 0.0019374578759164224,
+      "ratio": 0.4686563816939029,
+      "distance": 10.479572504396122,
+      "support": 8,
+      "loo_max": 4.320769116791291,
+      "truth": null,
+      "node": 9,
+      "occupied": true
+    },
+    {
+      "query": 20,
+      "candidate": 0,
+      "probability": 0.0017858655391322297,
+      "ratio": 0.520569696456655,
+      "distance": 10.370231950893654,
+      "support": 7,
+      "loo_max": 4.2387567662196375,
+      "truth": null,
+      "node": 11,
+      "occupied": false
+    },
+    {
+      "query": 20,
+      "candidate": 2,
+      "probability": 0.00047850781724341913,
+      "ratio": 0.1394823203182373,
+      "distance": 6.298712761710549,
+      "support": 7,
+      "loo_max": 4.2387567662196375,
+      "truth": null,
+      "node": 7,
+      "occupied": true
+    }
+  ],
+  "constellation_13": [],
+  "constellation_14": [
+    {
+      "query": 17,
+      "candidate": 2,
+      "probability": 0.004323378545945748,
+      "ratio": 0.9676531653486229,
+      "distance": 11.062160267120003,
+      "support": 5,
+      "loo_max": 5.07469011761373,
+      "truth": null,
+      "node": 5,
+      "occupied": true
+    },
+    {
+      "query": 17,
+      "candidate": 3,
+      "probability": 0.0006518385462637076,
+      "ratio": 0.14589368612651585,
+      "distance": 11.96358147214182,
+      "support": 5,
+      "loo_max": 5.07469011761373,
+      "truth": null,
+      "node": 3,
+      "occupied": false
+    },
+    {
+      "query": 17,
+      "candidate": 5,
+      "probability": 0.003134115692263857,
+      "ratio": 0.7014738445773766,
+      "distance": 11.729524914931552,
+      "support": 5,
+      "loo_max": 5.07469011761373,
+      "truth": null,
+      "node": 5,
+      "occupied": true
+    }
+  ],
+  "constellation_15": [],
+  "constellation_16": [],
+  "constellation_17": [
+    {
+      "query": 8,
+      "candidate": 8,
+      "probability": 0.004987998884857907,
+      "ratio": 0.31264486304246575,
+      "distance": 1.5364128006750557,
+      "support": 7,
+      "loo_max": 3.521751507229707,
+      "truth": null,
+      "node": 6,
+      "occupied": true
+    },
+    {
+      "query": 16,
+      "candidate": 2,
+      "probability": 0.015707804991749307,
+      "ratio": 0.4944982603856946,
+      "distance": 1.6397014861810568,
+      "support": 7,
+      "loo_max": 3.521751507229707,
+      "truth": null,
+      "node": 2,
+      "occupied": true
+    },
+    {
+      "query": 23,
+      "candidate": 11,
+      "probability": 0.0013658121155527179,
+      "ratio": 0.21156264707064107,
+      "distance": 0.08539313754689296,
+      "support": 7,
+      "loo_max": 3.521751507229707,
+      "truth": null,
+      "node": 2,
+      "occupied": true
+    },
+    {
+      "query": 26,
+      "candidate": 2,
+      "probability": 0.0017947197714679706,
+      "ratio": 0.2556647929178888,
+      "distance": 3.8237707306900623,
+      "support": 7,
+      "loo_max": 3.521751507229707,
+      "truth": null,
+      "node": 4,
+      "occupied": true
+    }
+  ]
+}
