@@ -53,3 +53,27 @@ The attached screenshot reports public scores: v3 **0.90392**, v2 **0.90637**, o
 Continue the work
 
 </details>
+
+<details><summary>User request 15</summary>
+
+This is related only to the Q1 of the project, the colour recovery problem, in this solution one more step is implemented to better match the green channel to the one seen in the histogram, add this improvement step to the existing solution for Q1, add the markdown cells explaining the step, show the progress of the colour recovery and finally generate and replace the final recovered image for Q1, write the minimal code and conserve the token usage
+
+Supplied source: `/Users/rohitfarfad/Downloads/Porject1Q1.ipynb`.
+
+</details>
+
+<details><summary>User request 18</summary>
+
+The latest score and improvements are updated in the AGENTS.md, current score stands at 91.79 percent on public kaggle leader board, need to improve it to get at least up to 93-95 percent, look for more refinement in the solution to improve the score in new branch, keep the code changes to minimum and effiecient, use the tokens conservatively, write the brief plan of refinement you will do in the chat before applying
+
+Requests 16–17 are recorded in AGENTS.md. OpenAI Codex assisted with this refinement and its validation.
+
+</details>
+
+<details><summary>User request 19</summary>
+
+The score improve to 92.3 percent, but still bit behind from target 95 percent, try these tips and other improvements you can think of, dont fall into the pitfalls or fallback to previously tried things, keep code changes to the minimum and be acurate and conservative with the token usage
+
+Attached lecture slide suggests weighted template matching (0.4 × Raw NCC + 0.6 × Bandpass NCC), constellation geometry to resolve localization ambiguity, and visual inspection. Its displayed private leaderboard does not identify the user's team; the approximately 92.3% v5 score is user-reported, not inferred from the slide. OpenAI Codex assisted with the experiments, refinement, and validation.
+
+</details>

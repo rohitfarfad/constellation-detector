@@ -1,0 +1,56 @@
+{
+  "pisces": [],
+  "scorpius": [],
+  "taurus": [],
+  "constellation_01": [],
+  "constellation_02": [],
+  "constellation_03": [],
+  "constellation_04": [],
+  "constellation_05": [],
+  "constellation_06": [],
+  "constellation_07": [],
+  "constellation_08": [],
+  "constellation_10": [],
+  "constellation_11": [
+    {
+      "queries": [
+        12,
+        47
+      ],
+      "candidates": [
+        0,
+        0
+      ],
+      "coordinates": [
+        [
+          1008.3015235066414,
+          2070.503158837557
+        ],
+        [
+          2119.8865191340446,
+          1822.8578695356846
+        ]
+      ],
+      "weighted_gains": [
+        0.024463039636611894,
+        0.039675915241241366
+      ],
+      "support": 10,
+      "loo_max": 7.35589707322553,
+      "distances": [
+        0.3008982153788405,
+        3.3387876880605276
+      ],
+      "nodes": [
+        12,
+        4
+      ]
+    }
+  ],
+  "constellation_12": [],
+  "constellation_13": [],
+  "constellation_14": [],
+  "constellation_15": [],
+  "constellation_16": [],
+  "constellation_17": []
+}

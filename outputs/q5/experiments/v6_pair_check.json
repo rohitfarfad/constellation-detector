@@ -1,0 +1,64 @@
+{
+  "pisces": {
+    "baseline_unchanged": true,
+    "constructed_reciprocal_errors": 0,
+    "corrected_pairs": 0,
+    "unwanted_changes": 0,
+    "details": []
+  },
+  "scorpius": {
+    "baseline_unchanged": true,
+    "constructed_reciprocal_errors": 7,
+    "corrected_pairs": 5,
+    "unwanted_changes": 0,
+    "details": [
+      {
+        "queries": [
+          8,
+          20
+        ],
+        "corrected": true,
+        "other_changes": []
+      },
+      {
+        "queries": [
+          8,
+          41
+        ],
+        "corrected": true,
+        "other_changes": []
+      },
+      {
+        "queries": [
+          17,
+          36
+        ],
+        "corrected": true,
+        "other_changes": []
+      },
+      {
+        "queries": [
+          19,
+          41
+        ],
+        "corrected": true,
+        "other_changes": []
+      },
+      {
+        "queries": [
+          20,
+          36
+        ],
+        "corrected": true,
+        "other_changes": []
+      }
+    ]
+  },
+  "taurus": {
+    "baseline_unchanged": true,
+    "constructed_reciprocal_errors": 0,
+    "corrected_pairs": 0,
+    "unwanted_changes": 0,
+    "details": []
+  }
+}

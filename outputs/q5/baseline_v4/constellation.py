@@ -471,14 +471,13 @@ def verify_constellations(ranking, patterns, image):
 
 
 def independent_transform(source, target):
-    """Prefer affine; use perspective only when withheld-point prediction improves."""
+    """Fit geometry and check every correspondence with that point withheld."""
     def fit(a, b, perspective):
         if perspective:
             return cv2.findHomography(a, b, 0)[0]
         affine = np.linalg.lstsq(np.column_stack([a, np.ones(len(a))]), b, rcond=None)[0].T
         return np.vstack([affine, [0, 0, 1]])
 
-    best = None
     for perspective in [False, True]:
         required = 6 if perspective else 5
         if len(source) < required:
@@ -505,11 +504,8 @@ def independent_transform(source, target):
                 estimated = cv2.perspectiveTransform(a[k:k+1][None], held_out)[0, 0]
                 errors.append(float(np.linalg.norm(estimated-b[k])))
         if max(errors) <= 12:
-            if not perspective and max(errors) <= 6:
-                return matrix, len(a), max(errors)
-            if best is None or max(errors) < .75*best[2]:
-                best = matrix, len(a), max(errors)
-    return best
+            return matrix, len(a), max(errors)
+    return None
 
 
 def recover_figure_queries(prediction, evidence, probabilities, nodes, points, owners, model):
@@ -549,58 +545,6 @@ def recover_figure_queries(prediction, evidence, probabilities, nodes, points, o
         recovered.append(dict(query=i+1, probability=float(probabilities[i][j]),
                               distance=distance, independent_support=support, loo_max=error))
     return recovered
-
-
-def resolve_figure_pairs(prediction, evidence, probabilities, nodes, points, owners, model):
-    """Swap reciprocal ambiguities only when image evidence and independent geometry agree."""
-    options = {}
-    for i, current in enumerate(prediction):
-        if current == -1 or not current[2]:
-            continue
-        matches, probs = evidence[i], probabilities[i]
-        xy = np.array([[m['x'], m['y']] for m in matches])
-        old = np.linalg.norm(xy-current[:2], axis=1).argmin()
-        scores = np.array([.4*np.tanh(m['features'][1]) + .6*np.tanh(m['features'][0])
-                           for m in matches])
-        for j in np.argsort(scores)[::-1]:
-            gain = float(scores[j]-scores[old])
-            if gain < .02 or probs[j] < max(.04, .5*probs.max()):
-                continue
-            for k, other in enumerate(prediction):
-                if (k != i and other != -1 and other[2]
-                        and np.linalg.norm(xy[j]-other[:2]) <= 12
-                        and np.linalg.norm(np.array(current[:2])-other[:2]) > 24):
-                    options.setdefault((i, k), (int(j), gain))
-    pairs = [(a[1]+options[k, i][1], i, k) for (i, k), a in options.items()
-             if i < k and (k, i) in options]
-    source, target = np.array(model['node_indices']), np.array(model['point_indices'])
-    used, swaps = set(), []
-    for _, i, k in sorted(pairs, reverse=True):
-        if i in used or k in used:
-            continue
-        keep = (owners[target] != i) & (owners[target] != k)
-        cv2.setRNGSeed(7)
-        fit = independent_transform(nodes[source[keep]], points[target[keep]])
-        if fit is None or fit[1] < 6:
-            continue
-        matrix, support, error = fit
-        denominator = np.column_stack([nodes, np.ones(len(nodes))]) @ matrix[2]
-        if (denominator.min()*denominator.max() <= 0
-                or np.max(np.abs(denominator))/np.min(np.abs(denominator)) > 3):
-            continue
-        projected = cv2.perspectiveTransform(nodes[None], matrix)[0]
-        selected = [options[i, k][0], options[k, i][0]]
-        moved = np.array([[evidence[q][j]['x'], evidence[q][j]['y']]
-                          for q, j in zip([i, k], selected)])
-        distances = np.linalg.norm(moved[:, None]-projected[None], axis=2)
-        if distances.min(1).max() > 6 or len(set(distances.argmin(1))) != 2:
-            continue
-        for q, position in zip([i, k], moved):
-            prediction[q] = [round(float(position[0]), 2), round(float(position[1]), 2), 1]
-        used.update([i, k])
-        swaps.append(dict(queries=[i+1, k+1], weighted_gains=[options[i, k][1], options[k, i][1]],
-                          distances=distances.min(1).tolist(), independent_support=support, loo_max=error))
-    return swaps
 
 
 def predict_scene(evidence, calibration, patterns, image, threshold=.15):
@@ -654,11 +598,9 @@ def predict_scene(evidence, calibration, patterns, image, threshold=.15):
         prediction.append([round(match['x'], 2), round(match['y'], 2), int(i in chosen)] if present else -1)
     recovered = recover_figure_queries(prediction, evidence, probabilities,
         patterns[winner['name']], geometry_points, geometry_owners, winner) if winner else []
-    swaps = resolve_figure_pairs(prediction, evidence, probabilities,
-        patterns[winner['name']], geometry_points, geometry_owners, winner) if winner else []
     return dict(patches=prediction, constellation=winner['name'] if chosen or recovered else 'unknown',
                 ranking=ranking, probabilities=[p.tolist() for p in probabilities],
-                geometric_rescues=recovered, geometric_swaps=swaps)
+                geometric_rescues=recovered)
 
 
 def score_scene(row, prediction):

@@ -1,0 +1,39 @@
+def independent_transform(source, target):
+    """Fit geometry and check every correspondence with that point withheld."""
+    def fit(a, b, perspective):
+        if perspective:
+            return cv2.findHomography(a, b, 0)[0]
+        affine = np.linalg.lstsq(np.column_stack([a, np.ones(len(a))]), b, rcond=None)[0].T
+        return np.vstack([affine, [0, 0, 1]])
+
+    best = None
+    for perspective in [False, True]:
+        required = 6 if perspective else 5
+        if len(source) < required:
+            continue
+        if any(np.linalg.matrix_rank(np.column_stack([a, np.ones(len(a))])) < 3
+               for a in [source, target]):
+            continue
+        a, b = source, target
+        if perspective:
+            matrix, mask = cv2.findHomography(a, b, cv2.RANSAC, 6,
+                                             maxIters=2000, confidence=.995)
+            if matrix is None or mask.sum() < required:
+                continue
+            a, b = a[mask.ravel() > 0], b[mask.ravel() > 0]
+        else:
+            matrix = fit(a, b, False)
+        errors = []
+        for k in range(len(a)):
+            keep = np.arange(len(a)) != k
+            held_out = fit(a[keep], b[keep], perspective)
+            if held_out is None:
+                errors.append(float('inf'))
+            else:
+                estimated = cv2.perspectiveTransform(a[k:k+1][None], held_out)[0, 0]
+                errors.append(float(np.linalg.norm(estimated-b[k])))
+        if max(errors) <= 12:
+            if best is None or max(errors) < .75*best[2]:
+                best = matrix, len(a), max(errors)
+    return best
+

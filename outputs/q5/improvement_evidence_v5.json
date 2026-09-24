@@ -1,0 +1,126 @@
+{
+  "branch": "refinement/q5-v5",
+  "baseline_public_score": 0.9179,
+  "public_target": [
+    0.93,
+    0.95
+  ],
+  "v5_public_score": null,
+  "change": "Keep affine fits with maximum withheld-point error <=6; otherwise select a projective fit only when its maximum withheld-point error is at least 25% lower. Retain existing recovery guards.",
+  "development_metrics": {
+    "pisces": {
+      "Presence": 0.9457671957671958,
+      "Localization": 0.9629629629629629,
+      "GeometricRecovery": 1.0,
+      "Identification": 1.0,
+      "Score": 0.9790343915343915
+    },
+    "scorpius": {
+      "Presence": 1.0,
+      "Localization": 1.0,
+      "GeometricRecovery": 1.0,
+      "Identification": 1.0,
+      "Score": 1.0
+    },
+    "taurus": {
+      "Presence": 0.9705627705627706,
+      "Localization": 0.9444444444444444,
+      "GeometricRecovery": 1.0,
+      "Identification": 1.0,
+      "Score": 0.9815295815295815
+    }
+  },
+  "mean_development_score": 0.986854657687991,
+  "audit": {
+    "candidate_recall": "70/71 present training queries within 12 pixels",
+    "errors": [
+      "Pisces patch 22: correct retained candidate rejected",
+      "Pisces patch 25: absent query falsely accepted",
+      "Taurus patch 18: correct candidate missing"
+    ]
+  },
+  "rejected_experiments": [
+    "Directional blur PSFs at cached candidate locations: identical three-scene errors and component scores; 217.09 seconds for feature recomputation and full training evaluation. Not promoted.",
+    "Unconditional projective comparison at 25% LOO improvement: extrapolation regression on synthetic affine controls. Added six-pixel affine preservation guard.",
+    "Permit recovery from five-support identity models: no additional competition predictions. Not promoted."
+  ],
+  "synthetic_design": {
+    "development_seed": 29,
+    "check_seed": 107,
+    "cases_per_transform": 150,
+    "support_points": 9,
+    "independently_evaluated_points_per_case": 5,
+    "observation_noise_sigma_pixels": 0.8,
+    "data": "Generated coordinates only; implementation check, not competition data or an accuracy estimate."
+  },
+  "synthetic_check": {
+    "affine": {
+      "changed_models": 0,
+      "accepted": [
+        150,
+        150
+      ],
+      "median_error": [
+        0.5587268704999994,
+        0.5587268704999994
+      ],
+      "p95_error": [
+        1.5651200760396813,
+        1.5651200760396813
+      ],
+      "within_6": [
+        1.0,
+        1.0
+      ]
+    },
+    "projective": {
+      "changed_models": 62,
+      "accepted": [
+        150,
+        150
+      ],
+      "median_error": [
+        1.8155626308101915,
+        0.9086162235315497
+      ],
+      "p95_error": [
+        8.554332817629962,
+        4.19814318967621
+      ],
+      "within_6": [
+        0.884,
+        0.9746666666666667
+      ]
+    }
+  },
+  "changes": [
+    {
+      "scene": "constellation_12",
+      "query": 16,
+      "before": -1,
+      "after": [
+        2164.04,
+        1650.82,
+        1
+      ],
+      "evidence": {
+        "query": 16,
+        "probability": 0.014351825102643578,
+        "distance": 4.242588575780384,
+        "independent_support": 8,
+        "loo_max": 5.0802337537526405
+      }
+    }
+  ],
+  "validation": {
+    "fresh_kernel_notebook": true,
+    "csv_rows": 16,
+    "csv_columns": 90,
+    "real_queries": 668,
+    "cli_without_training_matches_notebook": true,
+    "calibration_unchanged": true,
+    "original_input_hashes_verified": 881,
+    "degenerate_and_insufficient_geometry_rejected": true
+  },
+  "limitations": "Only three labeled scenes; method selection used these scenes. One extra prediction is unlabeled. Public/private improvement and the 93\u201395% target remain unverified. No Kaggle upload performed."
+}
